@@ -1,5 +1,5 @@
 const { model, Schema }  = require("mongoose")
-const jwt = require("jwt")
+const jwt = require("jsonwebtoken")
 const joi = require("joi")
 const passwordComplexity=require("joi-password-complexity")
 
@@ -32,6 +32,10 @@ const userSchema=  new Schema({
         type:String,
         required: true
     },
+     image:{
+        type:String,
+        required: true
+    },
      language:{
         type:String,
         required: true
@@ -44,7 +48,7 @@ userSchema.methods.generateAuthToken=function(){
     const token=jwt.sign({_id:this._id},process.env.JWT_KEY)
     return token;
 }
-const User = model("user",userSchema)
+const userModel = model("user",userSchema)
 
 const validate = (data)=>{
     const schema=joi.opject({
@@ -55,4 +59,4 @@ const validate = (data)=>{
     })
     return schema.validate(data)
 }
-module.exports = {User,validate}
+module.exports = {userModel,validate}
