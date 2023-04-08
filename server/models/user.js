@@ -1,28 +1,28 @@
 const { model, Schema }  = require("mongoose")
-const jwt = require("jsonwebtoken")
-const joi = require("joi")
-const passwordComplexity=require("joi-password-complexity")
+const jwt = require("jsonwebtoken");
+const joi = require("joi");
+const passwordComplexity = require("joi-password-complexity");
 
 const userSchema=  new Schema({
     name:{
         type:String,
-        required: true
+        
     },
      email:{
         type:String,
-        required: true
+        
     },
      password:{
         type:String,
-        required: true
+        
     },
      linkedin:{
         type:String,
-        required: true
+        
     },
      github:{
         type:String,
-        required: true
+        
     },
      role:{
         type:String,
@@ -31,15 +31,15 @@ const userSchema=  new Schema({
     },
      skills:{
         type:String,
-        required: true
+        
     },
      image:{
         type:String,
-        required: true
+        
     },
      language:{
         type:String,
-        required: true
+        
     },  
 },
  {timestamps:true}
@@ -52,10 +52,10 @@ userSchema.methods.generateAuthToken=function(){
 const userModel = model("user",userSchema)
 
 const validate = (data)=>{
-    const schema=joi.opject({
+    const schema=joi.object().keys({
         name:joi.string().required().label("Name"),
         email:joi.string().email().required().label("Email"),
-        password:passwordComplexity().required.label("password")
+        password: passwordComplexity().required().label("Password")
 
     })
     return schema.validate(data)
