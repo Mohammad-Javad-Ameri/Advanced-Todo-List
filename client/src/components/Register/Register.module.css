@@ -1,4 +1,6 @@
 .signup_container {
+    margin: 0;
+    padding: 0;
     width: 100%;
     min-height: 100vh;
     background-color: #f5f5f5;
@@ -22,7 +24,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #3bb19b;
+    background-color: #1a1a1a;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
@@ -92,7 +94,43 @@
 }
 
 .green_btn {
-    background-color: #3bb19b;
+    background-color: #1a1a1a;
     color: white;
     margin: 10px;
+}
+@media only screen and (max-width: 768px) {
+    .signup_form_container {
+        flex-direction: column;
+        
+        
+        
+    }
+                .signup_container{
+            align-items: unset;
+            justify-content: flex-start;
+
+        }
+
+    .left,
+    .right {
+        border-top-right-radius: 0;
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .left h1 {
+        font-size: 25px;
+        margin-bottom: 20px;
+    }
+
+    .input {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .white_btn,
+    .green_btn {
+        width: 100%;
+        margin: 10px 0;
+    }
 }

@@ -45,10 +45,12 @@ const userSchema=  new Schema({
  {timestamps:true}
 )
 
-userSchema.methods.generateAuthToken=function(){
-    const token=jwt.sign({_id:this._id},process.env.JWT_KEY)
-    return token;
-}
+userSchema.methods.generateAuthToken = function () {
+	const token = jwt.sign({ _id: this._id }, process.env.JWT_KEY, {
+		expiresIn: "7d",
+	});
+	return token;
+};
 const userModel = model("user",userSchema)
 
 const validate = (data)=>{

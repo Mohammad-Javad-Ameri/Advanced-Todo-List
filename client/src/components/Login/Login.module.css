@@ -66,7 +66,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #3bb19b;
+    background-color: #1a1a1a;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
@@ -92,7 +92,51 @@
 }
 
 .green_btn {
-    background-color: #3bb19b;
+    background-color: #1a1a1a;
     color: white;
     margin: 10px;
+}
+@media (max-width: 768px) {
+
+
+    .left,
+    .right {
+        border-radius: 0;
+    }
+
+    .right {
+        order: -1;
+    }
+
+    .input {
+        width: 100%;
+    }
+         .login_form_container {
+             flex-direction: column;
+             height: auto;
+         }
+    
+         .left {
+             border-radius: 10px;
+             border-top-right-radius: 0;
+             border-bottom-left-radius: 0;
+         }
+    
+         .right {
+             border-radius: 10px;
+             border-top-left-radius: 0;
+             border-bottom-right-radius: 0;
+         }
+    
+         .form_container {
+             margin-top: 20px;
+         }
+    
+         .input {
+             width: 100%;
+         }
+    
+         .white_btn,
+         .green_btn {
+             width: 100%;}
 }
