@@ -1,4 +1,4 @@
-const User = require("../models/user")
+ require("../models/user")
 const {userModel,validate}= require("../models/user")
 const bcrypt = require("bcrypt")
 
@@ -42,7 +42,7 @@ const createUser = async(req,res)=>{
 
         const salt = await bcrypt.genSalt(Number(process.env.SALT))
         const hashPassword = await bcrypt.hash(req.body.password,salt)
-        await new user({...req.body,password:hashPassword}.save());
+        await new userModel({...req.body,password:hashPassword}).save();
         res.status(201).send({ message: "User created successfully" })
 
     } catch (error) {

@@ -5,8 +5,8 @@ import styles from "../Register/Register.module.css";
 
 const Signup = () => {
 	const [data, setData] = useState({
-		firstName: "",
-		lastName: "",
+		name: "",
+		github:"",
 		email: "",
 		password: "",
 	});
@@ -14,14 +14,17 @@ const Signup = () => {
 	const navigate = useNavigate();
 
 	const handleChange = ({ currentTarget: input }) => {
+		
 		setData({ ...data, [input.name]: input.value });
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+	
 		try {
 			const url = "http://localhost:5000/users";
 			const { data: res } = await axios.post(url, data);
+			console.log(data);
 			navigate("/login");
 			console.log(res.message);
 		} catch (error) {
@@ -51,8 +54,8 @@ const Signup = () => {
 						<h1>Create Account</h1>
 						<input
 							type="text"
-							placeholder="First Name"
-							name="firstName"
+							placeholder="Name"
+							name="name"
 							onChange={handleChange}
 							value={data.name}
 							required
@@ -60,8 +63,8 @@ const Signup = () => {
 						/>
 						<input
 							type="text"
-							placeholder="Last Name"
-							name="lastName"
+							placeholder="Github"
+							name="github"
 							onChange={handleChange}
 							value={data.github}
 							required

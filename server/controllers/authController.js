@@ -1,16 +1,22 @@
-const { User } = require("../models/user");
+const {userModel}=require("../models/user");
 const bcrypt = require("bcrypt");
+
 const jwt = require("jsonwebtoken");
 
-const secretKey = process.env.JWT_SECRET;
+const secretKey = process.env.JWT_KEY;
 
 const login = async(req,res)=>{
     try {
         const {email,password}=req.body;
-        if (!email || !password) {
-            return res.status(400).send({ message: "Invalid email or password" });
+		console.log(email);
+		console.log(password);
+        if (!email ) {
+            return res.status(400).send({ message: "Invalid email" });
          }
-         const user = await User.findOne({ email });
+		 if (!password ) {
+            return res.status(400).send({ message: "Invalid passwordc" });
+         }
+         const user = await userModel.findOne({ email });
 		if (!user) {
 			return res.status(401).send({ message: "Invalid email or password" });
 		}
