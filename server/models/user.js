@@ -16,13 +16,14 @@ const userSchema=  new Schema({
         type:String,
         
     },
-     linkedin:{
+     linkedinUsername:{
         type:String,
+        require:true
         
     },
-     github:{
+     githubUsername:{
         type:String,
-        
+        require:true
     },
      role:{
         type:String,
@@ -30,7 +31,7 @@ const userSchema=  new Schema({
        default:"user"   
     },
      skills:{
-        type:String,
+        type:[String],
         
     },
      image:{
@@ -38,9 +39,13 @@ const userSchema=  new Schema({
         
     },
      language:{
-        type:String,
+        type:[String],
         
     },  
+    isAdmin:{
+        type:Boolean,
+        default:false
+    }
 },
  {timestamps:true}
 )
@@ -57,7 +62,9 @@ const validate = (data)=>{
     const schema=joi.object().keys({
         name:joi.string().required().label("Name"),
         email:joi.string().email().required().label("Email"),
-        password: passwordComplexity().required().label("Password")
+        password: passwordComplexity().required().label("Password"),
+        githubUsername:joi.string().label("Github"),
+        linkedinUsername:joi.string().label("Linkedin")
 
     })
     return schema.validate(data)

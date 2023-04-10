@@ -5,13 +5,25 @@ import styles from "../Register/Register.module.css";
 
 const Signup = () => {
 	const [data, setData] = useState({
-		name: "",
-		github:"",
-		email: "",
-		password: "",
+		name: '',
+		githubUsername:'',
+		email: '',
+		password: '',
+		linkedinUsername:'',
+		skills:''
 	});
 	const [error, setError] = useState("");
 	const navigate = useNavigate();
+  const [inputText, setInputText] = useState("");
+  const [list, setList] = useState([]);
+    const handleAddItem = () => {
+    setList([...list, inputText]);
+    setInputText("");
+  };
+  const input=(e) => {
+	setInputText(e.target.value)
+	setData({ ...data, [input.name]: input.value });
+}
 
 	const handleChange = ({ currentTarget: input }) => {
 		
@@ -62,15 +74,6 @@ const Signup = () => {
 							className={styles.input}
 						/>
 						<input
-							type="text"
-							placeholder="Github"
-							name="github"
-							onChange={handleChange}
-							value={data.github}
-							required
-							className={styles.input}
-						/>
-						<input
 							type="email"
 							placeholder="Email"
 							name="email"
@@ -88,6 +91,48 @@ const Signup = () => {
 							required
 							className={styles.input}
 						/>
+						<input
+	type="text"
+	placeholder="Github"
+	name="githubUsername"
+	onChange={handleChange}
+	value={data.github}
+	required
+	className={styles.input}
+/>
+<input
+	type="text"
+	placeholder="LinkedIn"
+	name="linkedinUsername"
+	onChange={handleChange}
+	value={data.linkedin}
+	required
+	className={styles.input}
+/>
+     <input
+              type="text"
+              placeholder="Skills"
+              name="skills"
+              onChange={handleChange}
+              value={data.skills}
+              required
+              className={styles.input}
+            />
+            <input
+			placeholder="Skills"
+              name="skills"
+              type="text"
+              value={inputText}
+              onChange={input}
+			  className={styles.input}
+            />
+            <button onClick={handleAddItem}>Add</button>
+            <ul>
+              {list.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+
 						{error && <div className={styles.error_msg}>{error}</div>}
 						<button type="submit" className={styles.green_btn}>
 							Sing Up
