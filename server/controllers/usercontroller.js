@@ -27,22 +27,22 @@ const getUser=async(req,res)=>{
 
 
 const createUser = async(req,res)=>{
-
+const { name, email, password,linkedinUsername,githubUsername } = req.body;
     try {
         const {error}=validate(req.body);
         if (error) {
         return res.status(400).send({message: error.details[0].message})
         }
 
-        const user = await userModel.findOne({email: req.body.email })
+        const user = await userModel.findOne({email: email })
 
         if (user)  {
         return res.status(409).send({message: "User with given email already exist"})
         }
 
         const salt = await bcrypt.genSalt(Number(process.env.SALT))
-        const hashPassword = await bcrypt.hash(req.body.password,salt)
-        await new userModel({...req.body,password:hashPassword}).save();
+        const hashPassword = await bcrypt.hash(password,salt)
+        const newUser=await new userModel({name,email,githubUsername,linkedinUsername,password:hashPassword}).save();
         res.status(201).send({ message: "User created successfully" })
 
     } catch (error) {
