@@ -60,7 +60,7 @@ const updateUser = async(req, res) => {
 
     const user = await userModel.findById(req.params.id);
     if (!user) {
-      return res.status(404).send({ message: "User not found" });
+      return res.status(404).send({ message: "User not Found" });
     }
 
    
