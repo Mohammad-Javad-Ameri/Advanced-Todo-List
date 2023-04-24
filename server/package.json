@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node server/index.js",
     "develop": "nodemon server/index.js"
+  }, 
+   "engines": {
+    "node": ">=14 <15"
   },
   "keywords": [],
   "author": "",
